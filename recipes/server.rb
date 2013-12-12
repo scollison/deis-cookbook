@@ -7,9 +7,16 @@ controller_dir = node.deis.controller.dir
 
 package 'python-virtualenv'
 package 'python-dev'
-package 'libevent-dev' # for gevent
 package 'rabbitmq-server' # for celery
 package 'libpq-dev' # for psycopg2
+
+# if the devmode attribute is true, only checkout the repo once
+# otherwise synchronize it to latest revision to facilitate upgrades
+if node.deis.devmode == true
+  git_action = :checkout
+else
+  git_action = :sync
+end
 
 # synchronize the gitosis repository
 
@@ -18,7 +25,7 @@ git controller_dir do
   group group
   repository node.deis.controller.repository
   revision node.deis.controller.revision
-  action :checkout
+  action git_action
 end
 
 directory controller_dir do
@@ -105,7 +112,9 @@ template '/etc/init/deis-server.conf' do
             :port => node.deis.controller.worker_port,
             :bind => '0.0.0.0',
             :workers => node.deis.controller.workers
-  notifies :restart, "service[deis-server]", :delayed
+  # Upstart requires full stop and start on job definition changes
+  notifies :stop, "service[deis-server]", :immediately
+  notifies :start, "service[deis-server]", :immediately
 end
 
 service 'deis-server' do
@@ -121,7 +130,9 @@ template '/etc/init/deis-worker.conf' do
   source 'deis-worker.conf.erb'
   variables :home => node.deis.dir,
             :django_home => node.deis.controller.dir
-  notifies :restart, "service[deis-worker]", :delayed
+  # Upstart requires full stop and start on job definition changes
+  notifies :stop, "service[deis-worker]", :immediately
+  notifies :start, "service[deis-worker]", :immediately
 end
 
 service 'deis-worker' do
