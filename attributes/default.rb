@@ -17,7 +17,7 @@ default.deis.database.user = 'deis'
 # server/api
 default.deis.controller.dir = '/opt/deis/controller'
 default.deis.controller.repository = 'https://github.com/opdemand/deis.git'
-default.deis.controller.revision = 'v0.3.1'
+default.deis.controller.revision = 'v0.4.0'
 default.deis.controller.debug = 'False'
 default.deis.controller.workers = 4
 default.deis.controller.worker_port = 8000
@@ -28,7 +28,7 @@ default.deis.controller.log_dir = '/opt/deis/controller/logs'
 # gitosis
 default.deis.gitosis.dir = '/opt/deis/gitosis'
 default.deis.gitosis.repository = 'git://github.com/opdemand/gitosis.git'
-default.deis.gitosis.revision = 'v0.3.1'
+default.deis.gitosis.revision = 'v0.4.0'
 
 # build
 default.deis.build.dir = '/opt/deis/build'
