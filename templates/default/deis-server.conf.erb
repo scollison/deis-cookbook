@@ -27,5 +27,5 @@ end script
 script
 cd $DJANGO_HOME
 . venv/bin/activate
-exec gunicorn deis.wsgi -b $DJANGO_BIND:$DJANGO_PORT -w $DJANGO_WORKERS -k gevent -n deis --access-logfile /var/log/deis/access.log --error-logfile /var/log/deis/server.log --log-level debug
+exec gunicorn deis.wsgi -b $DJANGO_BIND:$DJANGO_PORT -w $DJANGO_WORKERS -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -n deis --access-logfile /var/log/deis/access.log --error-logfile /var/log/deis/server.log --log-level debug
 end script
