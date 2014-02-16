@@ -1,6 +1,5 @@
 
 class Chef::Recipe::VolumeHelper
-
   def self.builder(node)
     mounts = []
     if node.deis.builder.packs != nil
@@ -29,7 +28,7 @@ class Chef::Recipe::VolumeHelper
   end
 
   def self.database_data(node)
-    ["/var/lib/postgresql"]
+    ['/var/lib/postgresql']
   end
 
   def self.logger(node)
@@ -51,7 +50,7 @@ class Chef::Recipe::VolumeHelper
   end
 
   def self.registry_data(node)
-    ["/data"]
+    ['/data']
   end
 
   def self.server(node)
