@@ -21,7 +21,7 @@ chef_gem 'etcd'
 # bind docker to all interfaces for external connectivity
 node.default['docker']['bind_uri'] = 'tcp://0.0.0.0:4243'
 # hardcode specific docker version
-node.default['docker']['version'] = '0.8.0'
+node.default['docker']['version'] = '0.8.1'
 # install docker through chef-docker
 include_recipe 'docker'
 
