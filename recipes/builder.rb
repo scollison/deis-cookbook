@@ -1,10 +1,9 @@
 
-if node.deis.builder.packs != nil
-  directory node.deis.builder.packs do
-    user node.deis.username
-    group node.deis.group
-    mode 0755
-  end
+directory node.deis.builder.packs do
+  user node.deis.username
+  group node.deis.group
+  mode 0755
+  not_if { node.deis.builder.packs.nil? }
 end
 
 docker_image node.deis.builder.repository do
@@ -21,7 +20,7 @@ docker_container node.deis.builder.container do
   privileged true
   env ["ETCD=#{node.deis.public_ip}:#{node.deis.etcd.port}",
        "HOST=#{node.deis.public_ip}",
-       "PORT=22"]
+       'PORT=22']
   image "#{node.deis.builder.repository}:#{node.deis.builder.tag}"
   port "#{node.deis.builder.port}:22"
   volume VolumeHelper.builder(node)
@@ -29,7 +28,7 @@ docker_container node.deis.builder.container do
 end
 
 # synchronize buildpacks to use during slugbuilder execution
-if node.deis.builder.packs != nil
+unless node.deis.builder.packs.nil?
 
   buildpacks = {
    'heroku-buildpack-java' => ['https://github.com/heroku/heroku-buildpack-java.git', 'master'],
@@ -45,7 +44,7 @@ if node.deis.builder.packs != nil
    'heroku-buildpack-perl' => ['https://github.com/miyagawa/heroku-buildpack-perl.git', 'carton'],
   }
 
-  buildpacks.each_pair { |path, repo|
+  buildpacks.each_pair do |path, repo|
     url, rev = repo
     git "#{node.deis.builder.packs}/#{path}" do
       user node.deis.username
@@ -54,7 +53,7 @@ if node.deis.builder.packs != nil
       revision rev
       action :sync
     end
-  }
+  end
 
 end
 
