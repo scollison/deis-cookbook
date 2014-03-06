@@ -61,6 +61,6 @@ end
 ruby_block 'wait-for-builder' do
   block do
     EtcdHelper.wait_for_key(node.deis.public_ip, node.deis.etcd.port,
-                            '/deis/builder/host', seconds=300)
+                            '/deis/builder/host', seconds=1800)
   end
 end
