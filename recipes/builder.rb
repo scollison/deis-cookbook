@@ -7,9 +7,12 @@ if node.deis.builder.packs != nil
   end
 end
 
-docker_image node.deis.builder.image do
-  action :pull_if_missing
+docker_image node.deis.builder.repository do
+  repository node.deis.builder.repository
+  tag node.deis.builder.tag
+  action node.deis.autoupgrade ? :pull : :pull_if_missing
   cmd_timeout node.deis.builder.image_timeout
+  notifies :redeploy, "docker_container[#{node.deis.builder.container}]", :immediately
 end
 
 docker_container node.deis.builder.container do
@@ -19,7 +22,7 @@ docker_container node.deis.builder.container do
   env ["ETCD=#{node.deis.public_ip}:#{node.deis.etcd.port}",
        "HOST=#{node.deis.public_ip}",
        "PORT=22"]
-  image node.deis.builder.image
+  image "#{node.deis.builder.repository}:#{node.deis.builder.tag}"
   port "#{node.deis.builder.port}:22"
   volume VolumeHelper.builder(node)
   cmd_timeout 600
@@ -58,6 +61,6 @@ end
 ruby_block 'wait-for-builder' do
   block do
     EtcdHelper.wait_for_key(node.deis.public_ip, node.deis.etcd.port,
-                            '/deis/builder/host', seconds=300)
+                            '/deis/builder/host', seconds=1800)
   end
 end

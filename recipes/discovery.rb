@@ -1,7 +1,10 @@
 
-docker_image node.deis.etcd.image do
-  action :pull_if_missing
+docker_image node.deis.etcd.repository do
+  repository node.deis.etcd.repository
+  tag node.deis.etcd.tag
+  action node.deis.autoupgrade ? :pull : :pull_if_missing
   cmd_timeout node.deis.etcd.image_timeout
+  notifies :redeploy, "docker_container[#{node.deis.etcd.container}]", :immediately
 end
 
 docker_container node.deis.etcd.container do
@@ -11,7 +14,7 @@ docker_container node.deis.etcd.container do
        "ETCD_PORT=#{node.deis.etcd.port}",
        "ETCD_PEER_PORT=#{node.deis.etcd.peer_port}",
        "ETCD_NODE_NAME=#{node.hostname}"]
-  image node.deis.etcd.image
+  image "#{node.deis.etcd.repository}:#{node.deis.etcd.tag}"
   port ["#{node.deis.etcd.port}:#{node.deis.etcd.port}",
         "#{node.deis.etcd.peer_port}:#{node.deis.etcd.peer_port}"]
 end
