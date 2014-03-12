@@ -24,6 +24,14 @@ link '/etc/nginx/sites-enabled/default' do
   notifies :restart, "service[nginx]", :delayed
 end
 
+template '/etc/nginx/sites-enabled/default-response' do
+  user 'root'
+  group 'root'
+  mode 0644
+  source 'nginx-default-response'
+  notifies :restart, "service[nginx]", :delayed
+end
+
 template '/etc/nginx/nginx.conf' do
   user 'root'
   group 'root'
