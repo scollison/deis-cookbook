@@ -68,6 +68,7 @@ default.deis.registry.image_timeout = default.deis.image_timeout * 2
 default.deis.registry.source = '/vagrant/images/registry'
 default.deis.registry.container = 'deis-registry'
 default.deis.registry.port = 5000
+default.deis.registry.settings_flavor = 'dev'
 
 # registry-data
 default.deis.registry_data.repository = 'deis/data'
