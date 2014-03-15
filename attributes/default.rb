@@ -82,7 +82,7 @@ default.deis.builder.image_timeout = default.deis.image_timeout
 default.deis.builder.source = '/vagrant/images/builder'
 default.deis.builder.container = 'deis-builder'
 default.deis.builder.port = 2222
-# change nil to target diractory to sync buildpacks from github
+# change nil to target directory to sync buildpacks from github
 default.deis.builder.packs = nil #'/var/lib/deis/buildpacks'
 
 # logger
