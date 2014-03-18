@@ -69,6 +69,27 @@ default.deis.registry.source = '/vagrant/images/registry'
 default.deis.registry.container = 'deis-registry'
 default.deis.registry.port = 5000
 
+# set these for registry backend support
+default.deis.registry.settings_flavor = 'dev'
+default.deis.registry.s3.access_key = 'REPLACEME'
+default.deis.registry.s3.secret_key = 'REPLACEME'
+default.deis.registry.s3.bucket = 'REPLACEME'
+default.deis.registry.s3.encrypt = false
+default.deis.registry.s3.secure = false
+default.deis.registry.smtp.host = 'REPLACEME'
+default.deis.registry.smtp.port = 25
+default.deis.registry.smtp.login = 'REPLACEME'
+default.deis.registry.smtp.password = 'REPLACEME'
+default.deis.registry.smtp.secure = false
+default.deis.registry.smtp.from = 'REPLACEME'
+default.deis.registry.smtp.to = 'REPLACEME'
+default.deis.registry.swift.auth_url = 'REPLACEME'
+default.deis.registry.swift.container = 'REPLACEME'
+default.deis.registry.swift.username = 'REPLACEME'
+default.deis.registry.swift.password = 'REPLACEME'
+default.deis.registry.swift.tenant_name = 'REPLACEME'
+default.deis.registry.swift.region_name = 'REPLACEME'
+
 # registry-data
 default.deis.registry_data.repository = 'deis/data'
 default.deis.registry_data.tag = 'latest'
@@ -82,7 +103,7 @@ default.deis.builder.image_timeout = default.deis.image_timeout
 default.deis.builder.source = '/vagrant/images/builder'
 default.deis.builder.container = 'deis-builder'
 default.deis.builder.port = 2222
-# change nil to target diractory to sync buildpacks from github
+# change nil to target directory to sync buildpacks from github
 default.deis.builder.packs = nil #'/var/lib/deis/buildpacks'
 
 # logger
