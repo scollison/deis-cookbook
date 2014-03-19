@@ -60,10 +60,8 @@ class Chef::Recipe::VolumeHelper
     mounts = ["#{node.deis.log_dir}:/app/logs"]
     if node.deis.dev.mode == true
       mounts = [
-        "#{node.deis.dev.source}:/app/deis",
-        "#{File.join(node.deis.dev.source, 'controller/bin')}:/app/bin",
-        "#{File.join(node.deis.dev.source, 'controller/conf.d')}:/app/conf.d",
-        "#{File.join(node.deis.dev.source, 'controller/templates')}:/app/templates" ]
+        "#{node.deis.dev.source}:/app"
+      ]
     end
     mounts
   end
