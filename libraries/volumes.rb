@@ -57,7 +57,7 @@ class Chef::Recipe::VolumeHelper
   def self.server(node)
     # share log directory between server and logger components
     # TODO: replace with a distributed mechanism for populating `deis logs`
-    mounts = ["#{node.deis.log_dir}:/app/logs"]
+    mounts = ["#{node.deis.log_dir}:/var/log/deis"]
     if node.deis.dev.mode == true
       mounts << "#{File.join(node.deis.dev.source, 'controller')}:/app"
     end
