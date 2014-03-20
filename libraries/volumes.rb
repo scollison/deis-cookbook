@@ -59,11 +59,9 @@ class Chef::Recipe::VolumeHelper
     # TODO: replace with a distributed mechanism for populating `deis logs`
     mounts = ["#{node.deis.log_dir}:/app/logs"]
     if node.deis.dev.mode == true
-      mounts.concat [
-        "#{File.join(node.deis.dev.source, 'controller')}:/app/deis",
-        "#{File.join(node.deis.dev.source, 'controller/bin')}:/app/bin",
-        "#{File.join(node.deis.dev.source, 'controller/conf.d')}:/app/conf.d",
-        "#{File.join(node.deis.dev.source, 'controller/templates')}:/app/templates" ]
+      mounts = [
+        "#{node.deis.dev.source}:/app"
+      ]
     end
     mounts
   end
