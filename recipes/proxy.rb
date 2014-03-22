@@ -2,7 +2,7 @@
 # Cookbook Name:: deis-proxy
 # Recipe:: default
 #
-# Copyright 2014, OpDemand
+# Copyright 2014, OpDemand LLC
 #
 # All rights reserved - Do Not Redistribute
 #
