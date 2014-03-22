@@ -84,6 +84,13 @@ default.deis.registry_data.tag = 'latest'
 default.deis.registry_data.image_timeout = 300
 default.deis.registry_data.container = 'deis-registry-data'
 
+# router
+default.deis.router.repository = 'deis/router'
+default.deis.router.tag = 'latest'
+default.deis.router.image_timeout = default.deis.image_timeout * 2
+default.deis.router.container = 'deis-router'
+default.deis.router.port = 80
+
 # builder
 default.deis.builder.repository = 'deis/builder'
 default.deis.builder.tag = 'latest'

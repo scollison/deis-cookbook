@@ -63,6 +63,16 @@ class Chef
         end
         mounts
       end
+      
+      def self.router(node)
+        # share log directory between server and router components
+        # TODO: replace with a distributed mechanism for populating `deis logs`
+        mounts = ["#{node.deis.log_dir}:/var/log/deis"]
+        if node.deis.dev.mode == true
+          mounts << "#{File.join(node.deis.dev.source, 'router')}:/app"
+        end
+        mounts
+      end
     end
   end
 end
