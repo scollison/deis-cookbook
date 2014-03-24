@@ -47,19 +47,12 @@ default.deis.cache.container = 'deis-cache'
 default.deis.cache.port = 6379
 
 # server
-default.deis.server.repository = 'deis/server'
+default.deis.server.repository = 'deis/controller'
 default.deis.server.tag = 'latest'
 default.deis.server.image_timeout = default.deis.image_timeout * 2
 default.deis.server.source = '/vagrant/images/server'
-default.deis.server.container = 'deis-server'
+default.deis.server.container = 'deis-controller'
 default.deis.server.port = 8000
-
-# worker
-default.deis.worker.repository = 'deis/worker'
-default.deis.worker.tag = 'latest'
-default.deis.worker.image_timeout = default.deis.image_timeout * 2
-default.deis.worker.source = '/vagrant/images/worker'
-default.deis.worker.container = 'deis-worker'
 
 # registry
 default.deis.registry.repository = 'deis/registry'
