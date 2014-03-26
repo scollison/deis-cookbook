@@ -7,7 +7,7 @@
       "locked_version": "2.3.8"
     },
     "docker": {
-      "locked_version": "0.32.0"
+      "locked_version": "0.31.0"
     },
     "git": {
       "locked_version": "3.1.0"
