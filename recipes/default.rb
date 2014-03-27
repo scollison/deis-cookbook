@@ -24,7 +24,9 @@ end
 # bind docker to all interfaces for external connectivity
 node.default['docker']['bind_uri'] = 'tcp://0.0.0.0:4243'
 # hardcode specific docker version
-node.default['docker']['version'] = '0.8.0'
+node.default['docker']['version'] = '0.9.0'
+# use lxc execution driver until libcontainer is more stable
+node.default['docker']['exec_driver'] = 'lxc'
 # install docker through chef-docker
 include_recipe 'docker'
 
