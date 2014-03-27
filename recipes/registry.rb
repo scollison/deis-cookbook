@@ -37,7 +37,6 @@ docker_image node.deis.registry_data.repository do
   repository node.deis.registry_data.repository
   tag node.deis.registry_data.tag
   action :pull_if_missing
-  cmd_timeout node.deis.registry_data.image_timeout
 end
 
 docker_container node.deis.registry_data.container do
@@ -52,7 +51,6 @@ docker_image node.deis.registry.repository do
   repository node.deis.registry.repository
   tag node.deis.registry.tag
   action node.deis.autoupgrade ? :pull : :pull_if_missing
-  cmd_timeout node.deis.registry.image_timeout
   notifies :redeploy, "docker_container[#{node.deis.registry.container}]", :immediately
 end
 
@@ -66,7 +64,6 @@ docker_container node.deis.registry.container do
   image "#{node.deis.registry.repository}:#{node.deis.registry.tag}"
   port "#{node.deis.registry.port}:#{node.deis.registry.port}"
   volume VolumeHelper.registry(node)
-  cmd_timeout 600
 end
 
 ruby_block 'wait-for-registry' do

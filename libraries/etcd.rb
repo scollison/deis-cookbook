@@ -4,7 +4,7 @@ require 'timeout'
 class Chef
   class Recipe
     class EtcdHelper
-      def self.wait_for_key(host, port, k, seconds = 30)
+      def self.wait_for_key(host, port, k, seconds = 3600)
         # inline import to avoid load-time gem requirement
         require 'etcd'
         client = Etcd.client(host: host, port: port)

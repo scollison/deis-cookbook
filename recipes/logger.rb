@@ -3,7 +3,6 @@ docker_image node.deis.logger.repository do
   repository node.deis.logger.repository
   tag node.deis.logger.tag
   action node.deis.autoupgrade ? :pull : :pull_if_missing
-  cmd_timeout node.deis.logger.image_timeout
   notifies :redeploy, "docker_container[#{node.deis.logger.container}]", :immediately
 end
 
