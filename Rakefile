@@ -16,7 +16,7 @@ namespace :style do
     desc 'Run Chef style checks'
     FoodCritic::Rake::LintTask.new(:chef) do |t|
       t.options = {
-        fail_tags: ['any']
+        fail_tags: ['any', '-f ~FC014'] # Don't fail on a suggestion to refactor a large Ruby block
       }
     end
   rescue LoadError
