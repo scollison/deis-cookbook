@@ -1,5 +1,3 @@
-
-
 class Chef::Recipe::VolumeHelper
   def self.builder(node)
     mounts = []
@@ -61,5 +59,6 @@ class Chef::Recipe::VolumeHelper
     if node.deis.dev.mode == true
       mounts << "#{File.join(node.deis.dev.source, 'controller')}:/app"
     end
+    mounts
   end
 end
