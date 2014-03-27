@@ -11,6 +11,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[deis::default]
+      - recipe[deis::controller]
     attributes:
     data_bags_path: "test/integration/default/data_bags"
