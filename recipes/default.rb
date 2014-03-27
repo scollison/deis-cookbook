@@ -27,6 +27,15 @@ node.default['docker']['bind_uri'] = 'tcp://0.0.0.0:4243'
 node.default['docker']['version'] = '0.9.0'
 # use lxc execution driver until libcontainer is more stable
 node.default['docker']['exec_driver'] = 'lxc'
+
+# Workaround a bug in chef-docker
+# Safe to remove once https://github.com/bflad/chef-docker/pull/102
+# is merged and we pin to that new release.
+package 'lxc' do
+  options '--force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
+  action :install
+end
+
 # install docker through chef-docker
 include_recipe 'docker'
 
