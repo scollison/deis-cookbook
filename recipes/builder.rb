@@ -1,5 +1,5 @@
 # Must have a real name in case node.deis.builder.packs is nil
-directory "builder packs" do
+directory 'buildpacks' do
   path node.deis.builder.packs
   user node.deis.username
   group node.deis.group
