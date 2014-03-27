@@ -22,7 +22,7 @@ ruby_block 'publish-registry-config' do
     client.set('/deis/registry/swiftTenantName', node.deis.registry.swift.tenant_name)
     client.set('/deis/registry/swiftRegionName', node.deis.registry.swift.region_name)
   end
-  not_if {
+  not_if do
     begin
       client = Etcd.client(host: node.deis.public_ip, port: node.deis.etcd.port)
       client.get('/deis/registry')
@@ -30,7 +30,7 @@ ruby_block 'publish-registry-config' do
     rescue Net::HTTPServerException, Net::HTTPFatalError
       false
     end
-  }
+  end
 end
 
 docker_image node.deis.registry_data.repository do
