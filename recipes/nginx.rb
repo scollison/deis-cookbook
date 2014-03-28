@@ -1,13 +1,9 @@
 #
-# Cookbook Name:: deis-proxy
-# Recipe:: default
+# Cookbook Name:: deis
+# Recipe:: nginx
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2014, OpDemand LLC
 #
-# All rights reserved - Do Not Redistribute
-#
-
-include_recipe 'apt'
 
 apt_repository 'nginx-ppa' do
   uri 'http://ppa.launchpad.net/ondrej/nginx/ubuntu'

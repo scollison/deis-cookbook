@@ -1,3 +1,10 @@
+#
+# Cookbook Name:: deis
+# Recipe:: controller
+#
+# Copyright 2014, OpDemand LLC
+#
+
 include_recipe 'deis::default'
 include_recipe 'deis::discovery'
 include_recipe 'deis::registry'

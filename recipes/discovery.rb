@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: deis
+# Recipe:: discovery
+#
+# Copyright 2014, OpDemand LLC
+#
+
+include_recipe 'deis::default'
 
 docker_image node.deis.etcd.repository do
   repository node.deis.etcd.repository

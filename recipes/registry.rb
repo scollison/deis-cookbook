@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: deis
+# Recipe:: registry
+#
+# Copyright 2014, OpDemand LLC
+#
+
+include_recipe 'deis::default'
 
 require 'etcd'
 ruby_block 'publish-registry-config' do

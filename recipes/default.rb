@@ -6,7 +6,8 @@
 #
 
 # Install packages
-#
+# First, apt::default makes sure we're up-to-date
+include_recipe 'apt'
 package 'fail2ban'
 package 'git'
 package 'make'

@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: deis
+# Recipe:: database
+#
+# Copyright 2014, OpDemand LLC
+#
+
+include_recipe 'deis::default'
 
 docker_image node.deis.database_data.repository do
   repository node.deis.database_data.repository
