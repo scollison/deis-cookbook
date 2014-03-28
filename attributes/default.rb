@@ -1,7 +1,7 @@
 # Ensure attributes and resources are parsed
 # before we set new defaults.
-include_attribute "docker"
-include_attribute "rsyslog"
+include_attribute 'docker'
+include_attribute 'rsyslog'
 
 ## Docker
 # hardcode specific docker version
