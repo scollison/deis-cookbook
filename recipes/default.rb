@@ -5,6 +5,22 @@
 # Copyright 2014, OpDemand LLC
 #
 
+# Install packages
+#
+package 'fail2ban'
+package 'git'
+package 'make'
+
+# Workaround a bug in chef-docker
+# Safe to remove once https://github.com/bflad/chef-docker/pull/102
+# is merged and we pin to that new release.
+package 'lxc' do
+  options '--force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
+  action :install
+end
+
+# Install gems
+#
 # force macaddr version, see https://github.com/opdemand/deis/issues/552
 chef_gem 'macaddr' do
   action :remove
@@ -21,21 +37,6 @@ chef_gem 'etcd' do
   action :install
 end
 
-# bind docker to all interfaces for external connectivity
-node.default['docker']['bind_uri'] = 'tcp://0.0.0.0:4243'
-# hardcode specific docker version
-node.default['docker']['version'] = '0.9.0'
-# use lxc execution driver until libcontainer is more stable
-node.default['docker']['exec_driver'] = 'lxc'
-
-# Workaround a bug in chef-docker
-# Safe to remove once https://github.com/bflad/chef-docker/pull/102
-# is merged and we pin to that new release.
-package 'lxc' do
-  options '--force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
-  action :install
-end
-
 # install docker through chef-docker
 include_recipe 'docker'
 
@@ -44,7 +45,7 @@ include_recipe 'docker'
 # docker daemon starts when it normally does (start on runlevel [2345]) then the containers won't
 # boot properly. To working around this in a way that doesn't mean maintaining a custom docker recipe
 # we just use sed to replace the 'start on' stanza.
-if node.deis.dev.mode == true
+if node.deis.dev.mode
   bash 'patch_docker_upstart_start_event' do
     user 'root'
     code <<-EOF
@@ -54,18 +55,8 @@ if node.deis.dev.mode == true
   end
 end
 
-# install required packages
-package 'fail2ban'
-package 'git'
-package 'make'
-package 'ntp'
-
-# set public ip via Ohai if not defined
-node.default.deis.public_ip = node.ipaddress if node.deis.public_ip.nil?
-
 # create deis user with ssh access, auth keys
 # and the ability to run 'sudo chef-client'
-
 user node.deis.username do
   system true
   uid 324 # "reserved" for deis

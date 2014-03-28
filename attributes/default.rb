@@ -1,9 +1,27 @@
+# Ensure attributes and resources are parsed
+# before we set new defaults.
+include_attribute "docker"
+include_attribute "rsyslog"
+
+## Docker
+# hardcode specific docker version
+default.docker.version = '0.9.0'
+# use lxc execution driver until libcontainer is more stable
+default.docker.exec_driver = 'lxc'
+# bind docker to all interfaces for external connectivity
+default.docker.bind_uri = 'tcp://0.0.0.0:4243'
+
+## rsyslog
+default.rsyslog.server_search = 'run_list:recipe\[deis\:\:controller\]'
+
+## Deis
 # base
 default.deis.dir = '/var/lib/deis'
 default.deis.username = 'deis'
 default.deis.group = 'deis'
 default.deis.log_dir = '/var/log/deis'
-default.deis.public_ip = nil  # public ip must be defined or discovered
+default.deis.public_ip = node.ipaddress
+default.deis.image_timeout = 600
 default.deis.autoupgrade = true # redeploy containers when images are updated
 
 # development
@@ -12,9 +30,6 @@ default.deis.dev.source = '/vagrant'
 
 default.docker.container_cmd_timeout = 600
 default.docker.image_cmd_timeout = 1800
-
-# rsyslog
-default.rsyslog.server_search = 'run_list:recipe\[deis\:\:controller\]'
 
 # discovery
 default.deis.etcd.repository = 'deis/discovery'
