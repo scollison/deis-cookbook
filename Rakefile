@@ -39,8 +39,26 @@ namespace :integration do
   end
 end
 
+# Unit tests with rspec/chefspec
+namespace :unit do
+  begin
+    require 'rspec/core/rake_task'
+    desc 'Run unit tests with RSpec/ChefSpec'
+    RSpec::Core::RakeTask.new(:rspec) do |t|
+      t.rspec_opts = [].tap do |a|
+        a.push('--color')
+        a.push('--format progress')
+      end.join(' ')
+    end
+  rescue LoadError
+    puts '>>>>> rspec gem not loaded, omitting tasks' unless ENV['CI']
+  end
+end
+
+task unit: ['unit:rspec']
+
 desc 'Run all tests on Travis'
 task travis: ['style']
 
 # Default
-task default: ['style', 'integration:kitchen:all']
+task default: ['style', 'unit', 'integration:kitchen:all']

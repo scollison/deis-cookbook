@@ -5,6 +5,7 @@ gem 'rake'
 group :test do
   gem 'foodcritic', '~> 3.0'
   gem 'rubocop', '~> 0.18'
+  gem 'chefspec', '~> 3.4.0'
 end
 
 group :integration do
