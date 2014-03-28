@@ -5,6 +5,8 @@
 # Copyright 2014, OpDemand LLC
 #
 
+include_recipe 'apt'
+
 apt_repository 'nginx-ppa' do
   uri 'http://ppa.launchpad.net/ondrej/nginx/ubuntu'
   distribution node.lsb.codename
