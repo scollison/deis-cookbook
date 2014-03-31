@@ -58,6 +58,7 @@ end
 package 'fail2ban'
 package 'git'
 package 'make'
+package 'ntp'
 
 # set public ip via Ohai if not defined
 node.default.deis.public_ip = node.ipaddress if node.deis.public_ip.nil?
