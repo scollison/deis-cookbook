@@ -3,7 +3,6 @@ docker_image node.deis.database_data.repository do
   repository node.deis.database_data.repository
   tag node.deis.database_data.tag
   action :pull_if_missing
-  cmd_timeout node.deis.database_data.image_timeout
 end
 
 docker_container node.deis.database_data.container do
@@ -18,7 +17,6 @@ docker_image node.deis.database.repository do
   repository node.deis.database.repository
   tag node.deis.database.tag
   action node.deis.autoupgrade ? :pull : :pull_if_missing
-  cmd_timeout node.deis.database.image_timeout
   notifies :redeploy, "docker_container[#{node.deis.database.container}]", :immediately
 end
 

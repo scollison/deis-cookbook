@@ -11,7 +11,6 @@ docker_image node.deis.builder.repository do
   repository node.deis.builder.repository
   tag node.deis.builder.tag
   action node.deis.autoupgrade ? :pull : :pull_if_missing
-  cmd_timeout node.deis.builder.image_timeout
   notifies :redeploy, "docker_container[#{node.deis.builder.container}]", :immediately
 end
 
@@ -25,7 +24,6 @@ docker_container node.deis.builder.container do
   image "#{node.deis.builder.repository}:#{node.deis.builder.tag}"
   port "#{node.deis.builder.port}:22"
   volume VolumeHelper.builder(node)
-  cmd_timeout 600
 end
 
 # synchronize buildpacks to use during slugbuilder execution
