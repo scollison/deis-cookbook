@@ -27,7 +27,7 @@ template '/etc/nginx/sites-enabled/default-response' do
   group 'root'
   mode 0644
   source 'nginx-default-response'
-  notifies :restart, "service[nginx]", :delayed
+  notifies :restart, 'service[nginx]', :delayed
 end
 
 template '/etc/nginx/nginx.conf' do
