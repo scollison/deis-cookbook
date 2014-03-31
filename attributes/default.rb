@@ -21,7 +21,6 @@ default.deis.username = 'deis'
 default.deis.group = 'deis'
 default.deis.log_dir = '/var/log/deis'
 default.deis.public_ip = node.ipaddress
-default.deis.image_timeout = 600
 default.deis.autoupgrade = true # redeploy containers when images are updated
 
 # development

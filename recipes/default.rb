@@ -11,6 +11,7 @@ include_recipe 'apt'
 package 'fail2ban'
 package 'git'
 package 'make'
+package 'ntp'
 
 # Workaround a bug in chef-docker
 # Safe to remove once https://github.com/bflad/chef-docker/pull/102
