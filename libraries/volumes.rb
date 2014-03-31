@@ -63,7 +63,7 @@ class Chef
         end
         mounts
       end
-      
+
       def self.router(node)
         # share log directory between server and router components
         # TODO: replace with a distributed mechanism for populating `deis logs`
