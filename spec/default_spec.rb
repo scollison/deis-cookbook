@@ -8,17 +8,6 @@ describe 'deis::default' do
     ChefSpec::Runner.new.converge(described_recipe)
   end
 
-#  it 'should remove an old macaddr gem before reinstalling' do
-#    # We need to re-stub here, so we must also re-run Chef
-#    stub_command('/opt/chef/embedded/bin/gem list macaddr | grep "(1.6.1)"').and_return(true)
-#
-#    runner = ChefSpec::Runner.new.converge(described_recipe)
-#
-#    expect(runner).to remove_chef_gem('macaddr')
-#    expect(runner).to install_chef_gem('macaddr').with(version: '1.6.1')
-#
-#  end
-
   it 'should not remove an old macaddr gem before reinstalling' do
     expect(chef_run).to install_chef_gem('macaddr').with(version: '1.6.1')
   end
