@@ -13,14 +13,6 @@ package 'git'
 package 'make'
 package 'ntp'
 
-# Workaround a bug in chef-docker
-# Safe to remove once https://github.com/bflad/chef-docker/pull/102
-# is merged and we pin to that new release.
-package 'lxc' do
-  options '--force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
-  action :install
-end
-
 # Install gems
 #
 # force macaddr version, see https://github.com/opdemand/deis/issues/552
