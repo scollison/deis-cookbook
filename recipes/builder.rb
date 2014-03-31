@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: deis
+# Recipe:: builder
+#
+# Copyright 2013, OpDemand LLC
+#
+
+include_recipe 'deis::default'
+
 # Must have a real name in case node.deis.builder.packs is nil
 directory 'buildpacks' do
   path node.deis.builder.packs

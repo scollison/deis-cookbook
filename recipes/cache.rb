@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: deis
+# Recipe:: cache
+#
+# Copyright 2013, OpDemand LLC
+#
+
+include_recipe 'deis::default'
 
 docker_image node.deis.cache.repository do
   repository node.deis.cache.repository

@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: deis
+# Recipe:: logger
+#
+# Copyright 2013, OpDemand LLC
+#
+
+include_recipe 'deis::default'
 
 docker_image node.deis.logger.repository do
   repository node.deis.logger.repository

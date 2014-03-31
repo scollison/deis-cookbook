@@ -1,3 +1,10 @@
+#
+# Cookbook Name:: deis
+# Recipe:: runtime
+#
+# Copyright 2013, OpDemand LLC
+#
+
 include_recipe 'rsyslog::client'
 
 formations = data_bag('deis-formations')

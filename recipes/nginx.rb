@@ -1,10 +1,8 @@
 #
-# Cookbook Name:: deis-proxy
-# Recipe:: default
+# Cookbook Name:: deis
+# Recipe:: nginx
 #
-# Copyright 2013, YOUR_COMPANY_NAME
-#
-# All rights reserved - Do Not Redistribute
+# Copyright 2013, OpDemand LLC
 #
 
 include_recipe 'apt'
