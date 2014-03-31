@@ -94,7 +94,7 @@ default.deis.builder.tag = 'latest'
 default.deis.builder.container = 'deis-builder'
 default.deis.builder.port = 2222
 # change nil to target directory to sync buildpacks from github
-default.deis.builder.packs = nil # '/var/lib/deis/buildpacks'
+default.deis.builder.packs.dir = nil # '/var/lib/deis/buildpacks'
 default.deis.builder.packs.defaults = {
   'heroku-buildpack-java' => ['https://github.com/heroku/heroku-buildpack-java.git', 'master'],
   'heroku-buildpack-ruby' => ['https://github.com/heroku/heroku-buildpack-ruby.git', 'master'],

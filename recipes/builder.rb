@@ -7,8 +7,8 @@
 
 include_recipe 'deis::default'
 
-if node.deis.builder.packs
-  directory node.deis.builder.packs do
+if node.deis.builder.packs.dir
+  directory node.deis.builder.packs.dir do
     user node.deis.username
     group node.deis.group
     mode 0755
@@ -17,7 +17,7 @@ if node.deis.builder.packs
   # synchronize buildpacks to use during slugbuilder execution
   node.deis.builder.packs.defaults.each_pair do |path, repo|
     url, rev = repo
-    git "#{node.deis.builder.packs}/#{path}" do
+    git "#{node.deis.builder.packs.dir}/#{path}" do
       user node.deis.username
       group node.deis.group
       repository url

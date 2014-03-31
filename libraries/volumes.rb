@@ -3,8 +3,8 @@ class Chef
     class VolumeHelper
       def self.builder(node)
         mounts = []
-        unless node.deis.builder.packs.nil?
-          mounts << "#{node.deis.builder.packs}:/buildpacks"
+        unless node.deis.builder.packs.dir.nil?
+          mounts << "#{node.deis.builder.packs.dir}:/buildpacks"
         end
         if node.deis.dev.mode == true
           mounts << "#{File.join(node.deis.dev.source, 'builder')}:/app"
