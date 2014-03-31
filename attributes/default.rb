@@ -1,8 +1,3 @@
-# Ensure attributes and resources are parsed
-# before we set new defaults.
-include_attribute 'docker'
-include_attribute 'rsyslog'
-
 ## Docker
 # hardcode specific docker version
 default.docker.version = '0.9.0'
