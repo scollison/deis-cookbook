@@ -2,7 +2,7 @@
 # Cookbook Name:: deis
 # Recipe:: default
 #
-# Copyright 2014, OpDemand LLC
+# Copyright 2013, OpDemand LLC
 #
 
 # Install packages

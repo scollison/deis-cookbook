@@ -2,7 +2,7 @@
 # Cookbook Name:: deis
 # Recipe:: nginx
 #
-# Copyright 2014, OpDemand LLC
+# Copyright 2013, OpDemand LLC
 #
 
 include_recipe 'apt'
