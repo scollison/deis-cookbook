@@ -8,6 +8,10 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:sudo, :remove, resource_name)
   end
 
+  ChefSpec::Runner.define_runner_method(:docker_container)
+  ChefSpec::Runner.define_runner_method(:docker_image)
+  ChefSpec::Runner.define_runner_method(:docker_registry)
+
   # docker_container
   def commit_docker_container(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:docker_container, :commit, resource_name)
