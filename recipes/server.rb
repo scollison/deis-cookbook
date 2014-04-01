@@ -24,10 +24,3 @@ docker_container node.deis.server.container do
   port "#{node.deis.server.port}:#{node.deis.server.port}"
   volume VolumeHelper.server(node)
 end
-
-ruby_block 'wait-for-server' do
-  block do
-    EtcdHelper.wait_for_key(node.deis.public_ip, node.deis.etcd.port,
-                            '/deis/controller/host')
-  end
-end

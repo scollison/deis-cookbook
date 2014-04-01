@@ -39,14 +39,3 @@ docker_container node.deis.database.container do
   volume VolumeHelper.database(node)
   volumes_from node.deis.database_data.container
 end
-
-ruby_block 'wait-for-database' do
-  block do
-    EtcdHelper.wait_for_key(
-      node.deis.public_ip,
-      node.deis.etcd.port,
-      '/deis/database/host',
-      60
-    )
-  end
-end
