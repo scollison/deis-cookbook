@@ -9,35 +9,35 @@ describe 'deis::controller' do
     ChefSpec::Runner.new.converge(described_recipe)
   end
 
-  it 'should include the default recipe' do
-    expect(chef_run).to include_recipe('deis::default')
+  it 'includes the default recipe' do
+    expect(chef_run).to includes_recipe('deis::default')
   end
 
-  it 'should include the discovery recipe' do
-    expect(chef_run).to include_recipe('deis::discovery')
+  it 'includes the discovery recipe' do
+    expect(chef_run).to includes_recipe('deis::discovery')
   end
 
-  it 'should include the registry recipe' do
-    expect(chef_run).to include_recipe('deis::registry')
+  it 'includes the registry recipe' do
+    expect(chef_run).to includes_recipe('deis::registry')
   end
 
-  it 'should include the logger recipe' do
-    expect(chef_run).to include_recipe('deis::logger')
+  it 'includes the logger recipe' do
+    expect(chef_run).to includes_recipe('deis::logger')
   end
 
-  it 'should include the database recipe' do
-    expect(chef_run).to include_recipe('deis::database')
+  it 'includes the database recipe' do
+    expect(chef_run).to includes_recipe('deis::database')
   end
 
-  it 'should include the cache recipe' do
-    expect(chef_run).to include_recipe('deis::cache')
+  it 'includes the cache recipe' do
+    expect(chef_run).to includes_recipe('deis::cache')
   end
 
-  it 'should include the server recipe' do
-    expect(chef_run).to include_recipe('deis::server')
+  it 'includes the server recipe' do
+    expect(chef_run).to includes_recipe('deis::server')
   end
 
-  it 'should include the builder recipe' do
-    expect(chef_run).to include_recipe('deis::builder')
+  it 'includes the builder recipe' do
+    expect(chef_run).to includes_recipe('deis::builder')
   end
 end

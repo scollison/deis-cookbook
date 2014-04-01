@@ -9,7 +9,7 @@ describe 'deis::builder' do
   end
 
   it 'should include deis::default' do
-    expect(chef_run).to include_recipe 'deis::default'
+    expect(chef_run).to include_recipe('deis::default')
   end
 
   context 'when buildpacks directory is specified' do
@@ -37,7 +37,7 @@ describe 'deis::builder' do
   end
 
   context 'when autoupgrade is true' do
-    it 'pulls image' do
+    it 'pulls builder image' do
       expect(chef_run).to pull_docker_image(chef_run.node.deis.builder.repository)
     end
   end
@@ -49,17 +49,17 @@ describe 'deis::builder' do
       runner.converge(described_recipe)
     end
 
-    it 'pulls image if missing' do
+    it 'pulls builder image if missing' do
       expect(chef_run).to pull_if_missing_docker_image(chef_run.node.deis.builder.repository)
     end
   end
 
-  it 'notifies the container to redeploy' do
-    container = chef_run.docker_image(chef_run.node.deis.builder.repository)
-    expect(container).to notify("docker_container[#{chef_run.node.deis.builder.container}]").to(:redeploy).immediately
+  it 'notifies the builder container to redeploy' do
+    image = chef_run.docker_image(chef_run.node.deis.builder.repository)
+    expect(image).to notify("docker_container[#{chef_run.node.deis.builder.container}]").to(:redeploy).immediately
   end
 
-  it 'runs the container' do
+  it 'runs the builder container' do
     expect(chef_run).to run_docker_container(chef_run.node.deis.builder.container)
   end
 end
