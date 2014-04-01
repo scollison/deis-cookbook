@@ -73,14 +73,3 @@ docker_container node.deis.registry.container do
   port "#{node.deis.registry.port}:#{node.deis.registry.port}"
   volume VolumeHelper.registry(node)
 end
-
-ruby_block 'wait-for-registry' do
-  block do
-    EtcdHelper.wait_for_key(
-      node.deis.public_ip,
-      node.deis.etcd.port,
-      '/deis/registry/host',
-      60
-    )
-  end
-end

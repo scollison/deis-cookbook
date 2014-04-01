@@ -38,13 +38,6 @@ bash 'install-etcdctl' do
   creates '/usr/local/bin/etcdctl'
 end
 
-ruby_block 'wait-for-discovery' do
-  block do
-    Connect.wait_tcp(node.deis.public_ip, node.deis.etcd.port, 30)
-    Connect.wait_http("http://#{node.deis.public_ip}:#{node.deis.etcd.port}/version", 30)
-  end
-end
-
 require 'etcd'
 ruby_block 'publish-chef-config' do
   block do

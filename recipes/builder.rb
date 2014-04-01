@@ -45,10 +45,3 @@ docker_container node.deis.builder.container do
   port "#{node.deis.builder.port}:22"
   volume VolumeHelper.builder(node)
 end
-
-ruby_block 'wait-for-builder' do
-  block do
-    EtcdHelper.wait_for_key(node.deis.public_ip, node.deis.etcd.port,
-                            '/deis/builder/host', 1800)
-  end
-end

@@ -24,14 +24,3 @@ docker_container node.deis.logger.container do
   volume VolumeHelper.logger(node)
   port "#{node.deis.logger.port}:#{node.deis.logger.port}"
 end
-
-ruby_block 'wait-for-logger' do
-  block do
-    EtcdHelper.wait_for_key(
-      node.deis.public_ip,
-      node.deis.etcd.port,
-      '/deis/logs/host',
-      60
-    )
-  end
-end
