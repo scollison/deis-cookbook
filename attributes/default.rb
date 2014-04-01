@@ -94,7 +94,20 @@ default.deis.builder.tag = 'latest'
 default.deis.builder.container = 'deis-builder'
 default.deis.builder.port = 2222
 # change nil to target directory to sync buildpacks from github
-default.deis.builder.packs = nil # '/var/lib/deis/buildpacks'
+default.deis.builder.packs.dir = nil # '/var/lib/deis/buildpacks'
+default.deis.builder.packs.defaults = {
+  'heroku-buildpack-java' => ['https://github.com/heroku/heroku-buildpack-java.git', 'master'],
+  'heroku-buildpack-ruby' => ['https://github.com/heroku/heroku-buildpack-ruby.git', 'master'],
+  'heroku-buildpack-python' => ['https://github.com/heroku/heroku-buildpack-python.git', 'master'],
+  'heroku-buildpack-nodejs' => ['https://github.com/gabrtv/heroku-buildpack-nodejs', 'master'],
+  'heroku-buildpack-play' => ['https://github.com/heroku/heroku-buildpack-play.git', 'master'],
+  'heroku-buildpack-php' => ['https://github.com/CHH/heroku-buildpack-php.git', 'master'],
+  'heroku-buildpack-clojure' => ['https://github.com/heroku/heroku-buildpack-clojure.git', 'master'],
+  'heroku-buildpack-go' => ['https://github.com/kr/heroku-buildpack-go.git', 'master'],
+  'heroku-buildpack-scala' => ['https://github.com/heroku/heroku-buildpack-scala', 'master'],
+  'heroku-buildpack-dart' => ['https://github.com/igrigorik/heroku-buildpack-dart.git', 'master'],
+  'heroku-buildpack-perl' => ['https://github.com/miyagawa/heroku-buildpack-perl.git', 'carton']
+}
 
 # logger
 default.deis.logger.repository = 'deis/logger'
