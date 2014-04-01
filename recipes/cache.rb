@@ -24,4 +24,3 @@ docker_container node.deis.cache.container do
   volume VolumeHelper.cache(node)
   port "#{node.deis.cache.port}:#{node.deis.cache.port}"
 end
-
